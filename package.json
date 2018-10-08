@@ -1,0 +1,31 @@
+{
+  "name": "tarot-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "dev": "./node_modules/nodemon/bin/nodemon.js server/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nstimson1342/Tarot-App.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nstimson1342/Tarot-App/issues"
+  },
+  "homepage": "https://github.com/nstimson1342/Tarot-App#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3",
+    "mongoose": "^5.3.2",
+    "path": "^0.12.7"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.4"
+  }
+}
