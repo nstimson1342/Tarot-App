@@ -23,7 +23,7 @@ router.get('/',(req, res) => {
 })
 
 // localhost:3000/api/card/
-router.route('/card')
+router.route('/cards')
 .post((req, res) => {
 
   const card = new Card();
