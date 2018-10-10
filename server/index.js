@@ -4,12 +4,22 @@ const mongoose = require("mongoose")
 const bodyParser = require("body-parser")
 mongoose.connect('mongodb://localhost:27017/tarot-cards', {useNewUrlParser: true});
 const Card = require('./models/card')
+require('dotenv').config()
 
 const App = express()
 const router = express.Router()
+const PORT = process.env.PORT || 5000
 
 App.use(bodyParser.urlencoded({ extended: true }));
 App.use(bodyParser.json());
+
+if (process.env.NODE_ENV === "dev") {
+  App.use((req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+  });
+}
 
 // localhost:3000/api/tarotcards
 router.use((req, res, next) => {
@@ -55,6 +65,16 @@ router.route('/cards')
 })
 
 router.route('/card/:card_id')
+  .get((req, res) => {
+    console.log('find one route')
+    Card.findById(req.params.card_id, (err, card) => {
+      if(err){
+        res.send(err);
+      } else {
+        res.json(card)
+      }
+    })
+  })
   .delete((req, res) => {
     Card.findById(req.params.card_id, (err, card) => {
       if(err){
@@ -68,6 +88,6 @@ router.route('/card/:card_id')
 
 App.use('/api', router);
 
-App.listen(3000, () => {
-  console.log("serving port 3000")
+App.listen(PORT, () => {
+  console.log(`serving port ${PORT}`)
 })
