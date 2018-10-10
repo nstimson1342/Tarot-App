@@ -1,2 +1,0 @@
-- we will need a landing page that contains a title
-  -underneath the title we will have an index of the major arcana cards, and four minor arcana indexes, one for each suit (wands, swords, cups, discs/pentacles)
