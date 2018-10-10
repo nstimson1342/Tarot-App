@@ -38,3 +38,15 @@ desc: String```
 
 Delete: ```/api/cards```
 This will send a request to the database to delete an individual card.  The card's id must be included in the call.
+
+# Card Profiles:
+
+
+```type: String,
+name_short: String,
+name: String,
+value: String,
+value_int: Number,
+meaning_up: String,
+meaning_rev: String,
+desc: String```
