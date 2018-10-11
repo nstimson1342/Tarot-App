@@ -2,7 +2,7 @@ const express = require("express")
 const path = require("path")
 const mongoose = require("mongoose")
 const bodyParser = require("body-parser")
-mongoose.connect('mongodb://localhost:27017/tarot-api', {useNewUrlParser: true});
+mongoose.connect('mongodb://localhost:27017/tarot-cards', {useNewUrlParser: true});
 const Card = require('./models/card')
 require('dotenv').config()
 
@@ -62,7 +62,6 @@ router.route('/cards')
         res.json(cards)
       }
     })
-  }
 })
 
 router.route('/cards/:card_id')

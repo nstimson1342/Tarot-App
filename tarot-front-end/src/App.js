@@ -7,23 +7,25 @@ class App extends Component {
     super(props);
     this.state = {
       results: [],
-      value: ''
+      value: '',
+      data: []
     }
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
 
   }
 
-  handleSubmit(event) {
-    let searchTerm = this.state.value.replace(/\s/g, "+")
+  componentDidMount() {
     fetch(`http://localhost:5000/api/cards`)
       .then(response => response.json())
-      .then((data) => {
-        this.setState({
-          results: data[0]['cards']
+      .then(data => {this.setState({
+          data: data
         })
-        console.log(this.state.results)
       })
+  }
+
+  handleSubmit(event) {
+
     }
 
 
@@ -43,6 +45,9 @@ class App extends Component {
           <input onChange={this.handleChange} className="search-input" placeholder="search..."/>
           <button onClick={this.handleSubmit} value="search" type='button' id='search'>Search</button>
         </header>
+        <div className="cardList">
+          {this.state.data.map( card => <p key={card._id}>{card.name}</p>)}
+        </div>
       </div>
     );
   }
