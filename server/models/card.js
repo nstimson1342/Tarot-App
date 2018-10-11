@@ -7,6 +7,7 @@ const CardSchema = new Schema ({
   name: String,
   value: String,
   value_int: Number,
+  suit: String,
   meaning_up: String,
   meaning_rev: String,
   desc: String

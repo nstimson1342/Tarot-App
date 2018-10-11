@@ -1,35 +1,52 @@
 import React, { Component } from 'react';
 import './App.css';
+// import Fuse from 'fuse';
 
 class App extends Component {
-  state = {
-    name: undefined,
-    desc: undefined
+  constructor(props) {
+    super(props);
+    this.state = {
+      results: [],
+      value: ''
+    }
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+
   }
 
-  async componentDidMount() {
-    try {
-      const api_call = await fetch('http://localhost:5000/api/cards');
-      const data = await api_call.json()
-      console.log(data)
-      this.setState({
-        name: data[0].name,
-        desc: data[0].desc
+  handleSubmit(event) {
+    let searchTerm = this.state.value.replace(/\s/g, "+")
+    fetch(`http://localhost:5000/api/cards`)
+      .then(response => response.json())
+      .then((data) => {
+        this.setState({
+          results: data[0]['cards']
+        })
+        console.log(this.state.results)
       })
-    } catch(err) {
-      console.log(err)
     }
+
+
+  handleChange(event) {
+    this.setState({
+      value: event.target.value
+    })
   }
+
 
 
   render() {
     return (
       <div className="App">
-        <h1>Its working! Its WORKING!!! this is tarot stuff</h1>
-        <p>{this.state.name}: {this.state.desc}</p>
+        <header>
+          <h1>Tarot, mother fucker</h1>
+          <input onChange={this.handleChange} className="search-input" placeholder="search..."/>
+          <button onClick={this.handleSubmit} value="search" type='button' id='search'>Search</button>
+        </header>
       </div>
     );
   }
 }
+
 
 export default App;

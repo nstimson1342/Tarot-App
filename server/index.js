@@ -2,7 +2,7 @@ const express = require("express")
 const path = require("path")
 const mongoose = require("mongoose")
 const bodyParser = require("body-parser")
-mongoose.connect('mongodb://localhost:27017/tarot-cards', {useNewUrlParser: true});
+mongoose.connect('mongodb://localhost:27017/tarot-api', {useNewUrlParser: true});
 const Card = require('./models/card')
 require('dotenv').config()
 
@@ -55,18 +55,28 @@ router.route('/cards')
   })
 })
 .get((req, res) => {
-  Card.find((err, cards) => {
-    if(err){
-      res.send(err);
-    } else {
-      res.json(cards)
-    }
-  })
+  if(req.query.search) {
+    const regex = new RegExp(escapeRegex(req.query.search), 'gi');
+    Card.find({name: regex}, (err, cards) => {
+      if(err){
+        res.send(err);
+      } else {
+        res.json(cards)
+      }
+    })
+  } else {
+    Card.find({}, (err, cards) => {
+      if(err){
+        res.send(err);
+      } else {
+        res.json(cards)
+      }
+    })
+  }
 })
 
-router.route('/card/:card_id')
+router.route('/cards/:card_id')
   .get((req, res) => {
-    console.log('find one route')
     Card.findById(req.params.card_id, (err, card) => {
       if(err){
         res.send(err);
@@ -85,6 +95,10 @@ router.route('/card/:card_id')
       }
     })
   })
+
+function escapeRegex(text) {
+   return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
+};
 
 App.use('/api', router);
 
