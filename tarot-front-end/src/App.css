@@ -1,3 +1,44 @@
 .App {
   text-align: center;
+  background-color: gold;
+  min-height: 100vh;
+}
+
+.header {
+
+}
+
+.searchInput {
+
+}
+
+.cardList {
+  position: absolute;
+  background-color: black;
+  color: white;
+  height: 500px;
+  width: 300px;
+  overflow: scroll;
+}
+
+.cardButton {
+  width: 200px;
+  height: 60px;
+  font-size: 20px;
+  font-weight: bold;
+  font-family: fantasy;
+  margin: 5px;
+}
+
+.cardDisplay {
+  float: right;
+  text-align: center;
+  width: 1000px;
+  height: 500px;
+  background-color: silver;
+  font-family: fantasy;
+}
+
+.footer {
+
 }
