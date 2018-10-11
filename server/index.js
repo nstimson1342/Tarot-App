@@ -55,16 +55,6 @@ router.route('/cards')
   })
 })
 .get((req, res) => {
-  if(req.query.search) {
-    const regex = new RegExp(escapeRegex(req.query.search), 'gi');
-    Card.find({name: regex}, (err, cards) => {
-      if(err){
-        res.send(err);
-      } else {
-        res.json(cards)
-      }
-    })
-  } else {
     Card.find({}, (err, cards) => {
       if(err){
         res.send(err);
@@ -96,9 +86,7 @@ router.route('/cards/:card_id')
     })
   })
 
-function escapeRegex(text) {
-   return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
-};
+
 
 App.use('/api', router);
 
