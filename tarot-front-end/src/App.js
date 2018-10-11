@@ -10,29 +10,29 @@ class App extends Component {
       value: '',
       data: []
     }
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-
+  this.handleChange = this.handleChange.bind(this);
   }
 
   componentDidMount() {
     fetch(`http://localhost:5000/api/cards`)
       .then(response => response.json())
       .then(data => {this.setState({
-          data: data
+          data: data,
+          results: data
         })
       })
   }
 
-  handleSubmit(event) {
-
-    }
-
-
   handleChange(event) {
-    this.setState({
-      value: event.target.value
-    })
+    if (event.target.value.length) {
+      this.setState({
+        data: this.state.results.filter((card) => card.name.toLowerCase().includes(event.target.value.toLowerCase()))
+      })
+    } else {
+      this.setState({
+        data: this.state.results
+      })
+    }
   }
 
 
@@ -43,7 +43,6 @@ class App extends Component {
         <header>
           <h1>Tarot, mother fucker</h1>
           <input onChange={this.handleChange} className="search-input" placeholder="search..."/>
-          <button onClick={this.handleSubmit} value="search" type='button' id='search'>Search</button>
         </header>
         <div className="cardList">
           {this.state.data.map( card => <p key={card._id}>{card.name}</p>)}
