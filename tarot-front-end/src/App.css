@@ -1,44 +1,140 @@
 .App {
-  text-align: center;
-  background-color: gold;
-  min-height: 100vh;
+ background-image: url("bg.jpg");
+ background-size: contain;
+ display: flex;
+ min-height: 100vh;
+ flex-direction: column;
 }
 
-.header {
+.App-header {
+  height: 10vh;
+  text-align: center;
+  font-weight: bold;
+  font-family: fantasy;
+  color: silver;
+  text-shadow:
+		-1px -1px 0 #000,
+		1px -1px 0 #000,
+		-1px 1px 0 #000,
+		1px 1px 0 #000;
+  overflow: visible;
+}
 
+.App-main {
+  display: flex;
+  height: 85vh;
+}
+
+.searchBar {
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 15vw;
+  overflow: scroll;
+  margin: 1rem;
+  position: relative;
+  text-align: center;
 }
 
 .searchInput {
-
+  position: sticky;
+  top: 0;
+  height: 4%;
+  width: 90%;
+  margin: 3%;
+  background-color: #faebd7;
 }
 
 .cardList {
-  position: absolute;
-  background-color: black;
-  color: white;
-  height: 500px;
-  width: 300px;
-  overflow: scroll;
+
 }
 
 .cardButton {
-  width: 200px;
-  height: 60px;
-  font-size: 20px;
+  width: 75%;
+  height: 2rem;
+  font-size: 80%;
   font-weight: bold;
   font-family: fantasy;
-  margin: 5px;
+  border-radius: 5%;
+  margin: 2%;
+  background-color: rgba(192,192,192,0);
+  border-color: rgba(192,192,192,0);
+  color: white;
 }
 
-.cardDisplay {
-  float: right;
+.cardImage {
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 10%;
+  width: 35vw;
+  margin: 1rem;
   text-align: center;
-  width: 1000px;
-  height: 500px;
+  padding-top: 5%;
+  overflow: scroll;
+}
+
+.imageStyle {
+  margin-bottom: 2%;
   background-color: silver;
+  font-size: 100%;
+  border-color: black;
+}
+
+.imgSubtext {
+  font-size: .8rem;
+  font-style: italic;
   font-family: fantasy;
 }
 
-.footer {
+.cardBack {
+  height: 333px;
+  width: 189px;
+}
 
+img {
+  border-radius: 5%;
+}
+
+.flip {
+  transform: rotate(180deg);
+}
+
+.cardDescription {
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 10%;
+  width: 50vw;
+  margin: 1rem;
+  text-align: center;
+  padding-top: 5%;
+  font-size: 1.2rem;
+  padding-left: 5%;
+  padding-right: 5%;
+  overflow: scroll;
+}
+
+.appIntro {
+  font-family: fantasy;
+  font-size: 1.5rem;
+}
+
+.introHeader {
+  font-weight: bold;
+}
+
+.introBody {
+
+}
+
+.introFooter {
+  font-weight: bold;
+}
+
+.descTitle {
+  font-weight: bold;
+}
+
+.descContent {
+  font-weight: normal;
+  text-shadow: none;
+}
+
+.App-footer {
+  height: 5vh;
 }
