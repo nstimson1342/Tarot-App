@@ -9,11 +9,14 @@ class App extends Component {
       results: [],
       value: '',
       data: [],
-      card: {}
+      card: {},
+      style: 'golden-thread'
     }
   this.handleChange = this.handleChange.bind(this);
   this.cardClick = this.cardClick.bind(this);
   }
+
+
 
   componentDidMount() {
     fetch(`http://localhost:5000/api/cards`)
@@ -46,23 +49,42 @@ class App extends Component {
       )
   }
 
+  styleChange(event) {
+
+  }
+
   render() {
     return (
       <div className="App">
         <header className="header">
           <h1>Tarot, mother fucker</h1>
           <input onChange={this.handleChange} className="searchInput" placeholder="Card..."/>
+          <select onChange={this.styleChange}>
+            <option value='8-bit'>8-bit</option>
+            <option value='archeon' >archeon</option>
+            <option value='cat-people' >cat-people</option>
+            <option value='celestial' >celestial</option>
+            <option value='crows-magick' >crows-magick</option>
+            <option value='hermetic' >hermetic</option>
+            <option value='modern-medieval' >modern-medieval</option>
+            <option value='whimsical' >whimsical</option>
+            <option value='golden-thread' >golden-thread</option>
+
+          </select>
         </header>
         <div className="cardList">
           {this.state.data.map( card => <button className="cardButton" onClick={() => this.cardClick(card._id)} key={card._id}>{card.name}</button>)}
         </div>
         <div className="cardDisplay">
-          Name: {this.state.card.name}<br/><br/>
-          Suit: {this.state.card.suit}<br/><br/>
-          Type: {this.state.card.type}<br/><br/>
-          Meaning Up: {this.state.card.meaning_up}<br/><br/>
-          Meaning Reverse: {this.state.card.meaning_rev}<br/><br/>
-          Description: {this.state.card.desc}<br/><br/>
+          <img src={`https://gfx.tarot.com/images/site/decks/golden-thread/full_size/${this.state.card.img_num}.jpg`}/>
+          <div className="cardDisplay">
+             {this.state.card.name && <p>Name:  <span>{this.state.card.name}</span></p>}
+             {this.state.card.suit && <p>Suit:  <span>{this.state.card.suit}</span></p>}
+             {this.state.card.type && <p>Type:  <span>{this.state.card.type}</span></p>}
+             {this.state.card.meaning_up && <p>Meaning Up:  <span>{this.state.card.meaning_up}</span></p>}
+             {this.state.card.meaning_rev && <p>Meaning Reversed:  <span>{this.state.card.meaning_rev}</span></p>}
+             {this.state.card.desc && <p>Description:  <span>{this.state.card.desc}</span></p>}
+           </div>
         </div>
         <footer className="footer">
 

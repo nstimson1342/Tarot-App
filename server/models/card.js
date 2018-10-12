@@ -10,6 +10,7 @@ const CardSchema = new Schema ({
   suit: String,
   meaning_up: String,
   meaning_rev: String,
-  desc: String
+  desc: String,
+  img_url: String
 })
 module.exports = mongoose.model('Card', CardSchema)
