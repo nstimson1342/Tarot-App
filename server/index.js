@@ -13,6 +13,8 @@ const PORT = process.env.PORT || 5000
 App.use(bodyParser.urlencoded({ extended: true }));
 App.use(bodyParser.json());
 
+App.use(express.static(path.resolve(__dirname, '../tarot-front-end/build')));
+
 if (process.env.NODE_ENV === "dev") {
   App.use((req, res, next) => {
     res.header("Access-Control-Allow-Origin", "*");
@@ -85,9 +87,11 @@ router.route('/cards/:card_id')
     })
   })
 
-
-
 App.use('/api', router);
+
+App.get('*', function(request, response) {
+   response.sendFile(path.resolve(__dirname, '../tarot-front-end/build', 'index.html'));
+});
 
 App.listen(PORT, () => {
   console.log(`serving port ${PORT}`)
